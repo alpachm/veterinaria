@@ -20,7 +20,7 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false,
       },
       date: {
-        type: DataTypes.Date,
+        type: DataTypes.DATE,
         allowNull: false,
       },
       reason: {

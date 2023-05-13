@@ -10,7 +10,7 @@ module.exports = {
         allowNull: false,
       },
       date: {
-        type: Sequelize.Date,
+        type: Sequelize.DATE,
         allowNull: false,
       },
       reason: {
