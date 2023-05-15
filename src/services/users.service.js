@@ -5,8 +5,8 @@ class UsersServices {
     async findAll() {
         const users = await db.Users.findAll({
             where: {
-                status: "active"
-            }
+                status: "active",
+            },
         })
         return users
     }
