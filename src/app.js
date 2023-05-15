@@ -7,6 +7,7 @@ const hpp = require('hpp');
 const xss = require('xss-clean');
 
 const usersRouter = require("./routes/users.routes")
+const petsRouter = require("./routes/pets.routes")
 
 const app = express();
 
@@ -26,5 +27,6 @@ if (process.env.NODE_ENV === 'development') app.use(morgan('dev'));
 app.use('api/v1', limiter);
 
 app.use("/api/v1/users", usersRouter)
+app.use("/api/v1/pets", petsRouter)
 
 module.exports = app;

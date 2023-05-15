@@ -7,7 +7,7 @@ exports.findAll = catchAsync(async(req, res, next) => {
     const users = await usersServices.findAll()
 
     return res.status(200).json({
-        statuc: "succes",
+        status: "succes",
         results: users.length,
         users
     })
