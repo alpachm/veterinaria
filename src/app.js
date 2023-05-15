@@ -6,6 +6,8 @@ const helmet = require('helmet');
 const hpp = require('hpp');
 const xss = require('xss-clean');
 
+const usersRouter = require("./routes/users.routes")
+
 const app = express();
 
 const limiter = rateLimit({
@@ -22,5 +24,7 @@ app.use(cors());
 if (process.env.NODE_ENV === 'development') app.use(morgan('dev'));
 
 app.use('api/v1', limiter);
+
+app.use("/api/v1/users", usersRouter)
 
 module.exports = app;

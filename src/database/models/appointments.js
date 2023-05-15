@@ -8,7 +8,10 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      // define association here
+      Appointments.belongsTo(models.Pets,  {foreingkey: 'pet_id'})
+      Appointments.belongsTo(models.Vets,  {foreingkey: 'vet_id'})
+
+
     }
   }
   Appointments.init(
