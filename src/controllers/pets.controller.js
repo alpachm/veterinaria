@@ -13,3 +13,19 @@ exports.findAll = catchAsync(async(req, res, next) => {
     })
 
 })
+
+exports.create = catchAsync(async(req, res, next) => {
+  const {name, birthdate, specie, race, weight, user_id,petImgUrl} = req.body
+
+    const pet = await petsServices.createPet({
+      name, birthdate, specie, race, weight, user_id,petImgUrl
+    },
+    res
+    )
+
+    
+    return res.status(201).json({
+      status: "success",
+      pet
+    })
+})

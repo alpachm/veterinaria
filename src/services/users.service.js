@@ -15,6 +15,8 @@ class UsersServices {
         })
         return users
     }
+
+    
 }
 
 module.exports = UsersServices
