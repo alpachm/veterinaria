@@ -1,61 +1,70 @@
-const db = require("../database/models/index")
-const AppError = require("../utils/appError")
+const db = require('../database/models/index');
+const AppError = require('../utils/appError');
 
 class UsersServices {
-    async findAll() {
-        const users = await db.Users.findAll({
-            where: {
-                status: "active",                                          
-            },
-            include: [
-                {
-                    model: db.Pets
-                }
-            ]
-        })
-        return users
+  async findAll() {
+    const users = await db.Users.findAll({
+      where: {
+        status: 'active',
+      },
+      include: [
+        {
+          model: db.Pets,
+        },
+      ],
+    });
+    return users;
+  }
+
+  async create(data, res) {
+    try {
+      const user = await db.Users.create(data);
+
+      return user;
+    } catch (error) {
+      return res.status(500).json({
+        status: 'fail',
+        error,
+      });
     }
+  }
 
-    async create(data, res) {
-        try {
-            const user = await db.Users.create(data)
+  async findOne(userId) {
+    try {
+      const user = await db.Users.findOne({
+        where: {
+          status: 'active',
+          id: userId,
+        },
+        include: [
+          {
+            model: db.Pets,
+          },
+        ],
+      });
 
-            return user
-            
-        } catch (error) {
-            return res.status(500).json({
-                status: "fail",
-                error
-            })
-                
-            }
-        }
+      if (!user) throw new AppError(`User whit id: ${userId} not found`, 404);
 
-       async findOne(userId) {
-        try {
-            const user = await db.Users.findOne({
-                where: {
-                    status: "active",
-                    id: userId
-                },
-                include: [
-                    {
-                        model: db.Pets,
-                        
-                    },
-                ]
-                
-            })
+      return user;
+    } catch (error) {
+      throw Error(error);
+    }
+  }
 
-            if (!user) throw new AppError(`User whit id: ${userId} not found`, 404);
+  async update(user, userData) {
+    try {
+      return await user.update(userData);
+    } catch (error) {}
+  }
 
-        return user
+  async delete(userId) {
 
-        } catch (error) {
-            throw Error(error)
-                
-        }
-       }
+    const user = await this.findOne(userId)
+
+    return await user.update({
+     status: "disabled"
+    })
+ }
 }
 
-module.exports = UsersServices
+module.exports = UsersServices;

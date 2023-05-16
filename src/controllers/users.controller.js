@@ -52,3 +52,30 @@ exports.findOne = catchAsync(async(req, res, next) => {
         user
     })
 })
+
+exports.update = catchAsync(async(req, res, next) => {
+    const {id} = req.params
+    const {name, surname, email} = req.body
+
+    const user = await usersServices.findOne(id)
+
+    const userUpdate = await usersServices.update(user, {
+        name, surname, email
+    })
+
+    return res.status(200).json({
+        status: "succes",
+        userUpdate
+    })
+})
+
+exports.delete = catchAsync(async (req, res, next) => {
+    const {id} = req.params
+    const userDeleted = await usersServices.delete(id)
+
+    return res.status(200).json({
+        status: "success",
+        message: "Author deleted",
+        userDeleted
+    })
+});
