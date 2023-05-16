@@ -9,48 +9,54 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER,
       },
-
+  
       name: {
         type: Sequelize.STRING(20),
         allowNull: false,
       },
-
+  
       birthdate: {
         type: Sequelize.DATE,
         allowNull: false,
       },
-
+  
       genre: {
         type: Sequelize.ENUM('male', 'female'),
         defaultValue: 'male',
         allowNull: false,
       },
-
+  
       specie: {
         type: Sequelize.STRING(40),
         allowNull: false,
       },
-
+  
       race: {
         type: Sequelize.STRING(20),
         allowNull: false,
       },
-
+  
       weight: {
         type: Sequelize.STRING(10),
         allowNull: false,
       },
-
-      userId: {
+  
+      user_id: {
         type: Sequelize.INTEGER,
         allowNull: false,
+        references: {
+          model: "Users",
+          key: "id"
+        },
+        onDelete: "SET NULL",
+        onUpdate: "CASCADE"
       },
-
+  
       petImgUrl: {
         type: Sequelize.STRING,
         allowNull: false,
       },
-
+  
       status: {
         type: Sequelize.BOOLEAN,
         allowNull: false,
@@ -58,15 +64,15 @@ module.exports = {
       },
       createdAt: {
         allowNull: false,
-        type: Sequelize.DATE,
+        type: Sequelize.DATE
       },
       updatedAt: {
         allowNull: false,
-        type: Sequelize.DATE,
-      },
+        type: Sequelize.DATE
+      }
     });
   },
   async down(queryInterface, Sequelize) {
     await queryInterface.dropTable('Pets');
-  },
+  }
 };

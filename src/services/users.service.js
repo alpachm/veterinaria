@@ -7,11 +7,11 @@ class UsersServices {
             where: {
                 status: "active",                                          
             },
-            // include: [
-            //     {
-            //         model: db.Pets
-            //     }
-            // ]
+            include: [
+                {
+                    model: db.Pets
+                }
+            ]
         })
         return users
     }

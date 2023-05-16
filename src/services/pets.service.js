@@ -1,6 +1,7 @@
 const db = require("../database/models/index")
+const AppError = require("../utils/appError")
 
-class petsServices {
+class PetsServices {
     async findAll() {
         const pets = await db.Pets.findAll({
             where: {
@@ -11,4 +12,4 @@ class petsServices {
     }
 }
 
-module.exports = petsServices 
+module.exports = PetsServices
