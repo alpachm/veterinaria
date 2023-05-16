@@ -8,11 +8,11 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      Clinic_history.belongsTo(models.Pets,  {foreingkey: 'pet_id'})
-      Clinic_history.belongsTo(models.Vets,  {foreingkey: 'vet_id'})
-      Clinic_history.hasMany(models.Treatment,  {foreingkey: 'clinic_history_id'})
-      Clinic_history.hasMany(models.Ch_images,  {foreingkey: 'clinic_history_id'})
-      Clinic_history.hasMany(models.Exams,  {foreingkey: 'clinic_history_id'})
+      Clinic_history.belongsTo(models.Pets,  {foreignKey: 'pet_id'})
+      Clinic_history.belongsTo(models.Vets,  {foreignKey: 'vet_id'})
+      Clinic_history.hasMany(models.Treatment,  {foreignKey: 'clinic_history_id'})
+      Clinic_history.hasMany(models.Ch_images,  {foreignKey: 'clinic_history_id'})
+      Clinic_history.hasMany(models.Exams,  {foreignKey: 'clinic_history_id'})
 
 
     }

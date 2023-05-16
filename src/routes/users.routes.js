@@ -4,7 +4,11 @@ const userController = require("../controllers/users.controller")
 
 const router = express.Router()
 
+router.post("/", userController.create)
+
 router
 .get("/pets",userController.findAll)
+
+router.get("/pets/:id", userController.findOne)
 
 module.exports = router
