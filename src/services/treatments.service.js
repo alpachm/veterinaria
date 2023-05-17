@@ -11,4 +11,6 @@ class TreatmentsServices {
   }
 }
 
+//Hola estoy en service
+
 module.exports = TreatmentsServices;
