@@ -3,6 +3,20 @@ const AppError = require("../utils/appError")
 
 
 class PetsServices {
+    async findOne(petId) {
+        try {
+            const pet = await db.Pets.findOne({
+              where: {
+                status: true,
+                id: petId,
+              },
+            });
+            if (!pet) throw new AppError(`Vet whit id: ${petId} not found`, 404);
+            return pet;
+          } catch (error) {
+            throw Error(error);
+          }
+    }
     async findAll() {
         const pets = await db.Pets.findAll({
             where: {
