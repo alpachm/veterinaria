@@ -8,6 +8,7 @@ const xss = require('xss-clean');
 
 const usersRouter = require("./routes/users.routes")
 const petsRouter = require("./routes/pets.routes")
+const vetsRouter = require("./routes/vets.routes")
 
 const app = express();
 
@@ -28,5 +29,6 @@ app.use('api/v1', limiter);
 
 app.use("/api/v1/users", usersRouter)
 app.use("/api/v1/pets", petsRouter)
+app.use("/api/v1/vets", vetsRouter)
 
 module.exports = app;

@@ -17,16 +17,8 @@ router.post(
 );
 
 router
-  .patch(
-    '/:id',
-    validationsMiddleware.updatePetValidation,
-    petsController.update
-  )
-  .delete(petsController.delete);
-
-module.exports = router;
-
-router
   .route('/:id')
   .patch(validationsMiddleware.updatePetValidation, petsController.update)
   .delete(petsController.delete);
+
+  module.exports = router;
