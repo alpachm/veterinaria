@@ -16,7 +16,6 @@ const validFields = (req, res, next) => {
 exports.createPetValidation = [
   body('name').notEmpty().withMessage('Name cannot be empty'),
   body('birthdate').notEmpty().withMessage('Birthdate cannot be empty'),
-  body('genre').notEmpty().withMessage('Genre cannot be empty'),
   body('specie').notEmpty().withMessage('Specie cannot be empty'),
   body('race').notEmpty().withMessage('Race cannot be empty'),
   body('weigth').notEmpty().withMessage('Weigth cannot be empty'),

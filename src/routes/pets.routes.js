@@ -12,7 +12,6 @@ router.get('/', petsController.findAll);
 
 router.post(
   '/',
-  validationsMiddleware.createPetValidation,
   petsController.create
 );
 

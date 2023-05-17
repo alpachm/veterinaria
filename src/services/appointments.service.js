@@ -3,7 +3,13 @@ const AppError = require("../utils/appError")
 class AppointmentsServices{
     async createAppointments(data) {
         try {
-          const appointment = await db.Appointments.create(data);
+          const appointment = await db.Appointments.create(data,{
+            include: [
+              {
+                model: db.Pets
+              }
+            ]
+          });
           
           return appointment;
         } catch (error) {
