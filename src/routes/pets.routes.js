@@ -1,14 +1,32 @@
-const express = require("express")
+const express = require('express');
 
-const petsController = require("../controllers/pets.controller")
+//controllers
+const petsController = require('../controllers/pets.controller');
 
-const router = express.Router()
+//middlewares
+const validationsMiddleware = require('../middlewares/validations.middleware');
 
+const router = express.Router();
+
+router.get('/', petsController.findAll);
+
+router.post(
+  '/',
+  validationsMiddleware.createPetValidation,
+  petsController.create
+);
 
 router
-.get("/",petsController.findAll)
+  .patch(
+    '/:id',
+    validationsMiddleware.updatePetValidation,
+    petsController.update
+  )
+  .delete(petsController.delete);
+
+module.exports = router;
 
 router
-.post("/", petsController.create)
-
-module.exports = router
+  .route('/:id')
+  .patch(validationsMiddleware.updatePetValidation, petsController.update)
+  .delete(petsController.delete);
