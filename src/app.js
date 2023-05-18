@@ -10,6 +10,8 @@ const usersRouter = require('./routes/users.routes');
 const petsRouter = require('./routes/pets.routes');
 const vetsRouter = require('./routes/vets.routes');
 const appointmentRouter = require('./routes/appointments.routes');
+const treatmentsRouter = require('./routes/treatments.routes');
+
 const globalErrorHandler = require('./controllers/error.controller');
 const AppError = require('./utils/appError');
 
@@ -34,6 +36,7 @@ app.use('/api/v1/users', usersRouter);
 app.use('/api/v1/pets', petsRouter);
 app.use('/api/v1/vets', vetsRouter);
 app.use('/api/v1/appointment', appointmentRouter);
+app.use('/api/v1/treatments', treatmentsRouter);
 
 app.all('*', (req, res, next) => {
   next(new AppError(`Cannot find ${req.originalUrl} on this server`, 404));

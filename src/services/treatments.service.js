@@ -1,4 +1,5 @@
 const db = require('../database/models/index');
+const AppError = require('../utils/appError');
 
 class TreatmentsServices {
   async findAll() {
@@ -9,8 +10,29 @@ class TreatmentsServices {
     });
     return treatments;
   }
-}
 
-//Hola estoy en service
+  async createTreatments(data) {
+    const treatment = await db.Treatment.create(data, {
+      include: [
+        {
+          model: db.Clinic_history,
+        },
+      ],
+    });
+    return treatment;
+  }
+
+  async findOne(treatmentId) {
+    const treatment = await db.Treatment.findOne({
+      where: {
+        id: treatmentId,
+        status: 'active',
+      },
+    });
+    if (!treatment)
+      throw new AppError(`treatment with id ${treatmentId} not found`);
+    return treatment;
+  }
+}
 
 module.exports = TreatmentsServices;

@@ -13,9 +13,34 @@ exports.findAllTreatments = catchAsync(async (req, res, next) => {
   });
 });
 
-exports.createTreatments = catchAsync(async (req, res, next) => {});
+exports.createTreatments = catchAsync(async (req, res, next) => {
+  const { id } = req.params;
+  const { description, init_date, end_date } = req.body;
 
-exports.findOneTreatments = catchAsync(async (req, res, next) => {});
+  const treatment = await treatmentsServices.createTreatments({
+    description,
+    init_date,
+    end_date,
+    clinic_history_id: id,
+  });
+
+  return res.status(201).json({
+    status: 'success',
+    message: 'The treatment has been created 🍴',
+    treatment,
+  });
+});
+
+exports.findOneTreatments = catchAsync(async (req, res, next) => {
+  const { id } = req.params;
+
+  const treatment = await treatmentsServices.findOne(id);
+
+  res.status(200).json({
+    status: 'Success',
+    treatment,
+  });
+});
 
 exports.updateTreatments = catchAsync(async (req, res, next) => {});
 
