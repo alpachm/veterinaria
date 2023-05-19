@@ -45,3 +45,5 @@ exports.findOneTreatments = catchAsync(async (req, res, next) => {
 exports.updateTreatments = catchAsync(async (req, res, next) => {});
 
 exports.deleteTreatments = catchAsync(async (req, res, next) => {});
+
+//holaa
