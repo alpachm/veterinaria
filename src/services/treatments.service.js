@@ -33,6 +33,16 @@ class TreatmentsServices {
       throw new AppError(`treatment with id ${treatmentId} not found`);
     return treatment;
   }
+
+  async update(treatment, treatmentData) {
+    return await treatment.update(treatmentData);
+  }
+
+  async delete(treatmentId) {
+    const treatment = await this.findOne(treatmentId);
+
+    return await treatment.update({ status: 'disabled' });
+  }
 }
 
 module.exports = TreatmentsServices;

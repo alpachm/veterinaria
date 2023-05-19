@@ -42,6 +42,30 @@ exports.findOneTreatments = catchAsync(async (req, res, next) => {
   });
 });
 
-exports.updateTreatments = catchAsync(async (req, res, next) => {});
+exports.updateTreatments = catchAsync(async (req, res, next) => {
+  const { id } = req.params;
+  const { description } = req.body;
 
-exports.deleteTreatments = catchAsync(async (req, res, next) => {});
+  const treatment = await treatmentsServices.findOne(id);
+  const treatmentUpdate = await treatmentsServices.update(treatment, {
+    description,
+  });
+
+  res.status(200).json({
+    status: 'Success',
+    message: 'The treatments haas been update 🍬',
+    treatmentUpdate,
+  });
+});
+
+exports.deleteTreatments = catchAsync(async (req, res, next) => {
+  const { id } = req.params;
+
+  const deletedTreatment = await treatmentsServices.delete(id);
+
+  res.status(200).json({
+    status: 'Success',
+    message: 'The treatments haas been deleted 🍬',
+    deletedTreatment,
+  });
+});
