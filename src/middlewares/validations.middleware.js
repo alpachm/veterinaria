@@ -31,3 +31,10 @@ exports.updatePetValidation = [
   body('heigth').notEmpty().withMessage('Heigth cannot be empty'),
   validFields,
 ];
+
+exports.treatmentCreateValidation = [
+  body('description').notEmpty().withMessage('description cannot be empty'),
+  body('init_date').notEmpty().withMessage('init_date cannot be empty'),
+  body('end_date').notEmpty().withMessage('end_date cannot be empty'),
+  validFields,
+];
